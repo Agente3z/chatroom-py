@@ -1,6 +1,7 @@
 import requests
 import os
 from time import sleep
+import threading
 
 serverUrl = "http://127.0.0.1:5000"
 
@@ -27,15 +28,28 @@ while True:
             with open('cookie.txt', 'w') as f:
                 f.write(r)
             cookie = r
+
+            def ottieni():
+                while True:
+                    chat=requests.post(serverUrl, data={'method': 'get'}).text
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print(chat)
+                    print('Message: ')
+                    sleep(0.5)
+
+            t = threading.Thread(target=ottieni)
+            t.daemon = True
+            t.start()
+
             while True:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                r = requests.post(serverUrl, data={'method': 'get'})
-                r = r.text
-                print(r)
-                msg = input('Message: ')
+                msg = input()
                 with open('cookie.txt', 'r') as f:
                     cookie = f.read()
                 r = requests.post(serverUrl, data={'method': 'send', 'cookie': cookie, 'msg': msg, 'username': username})
 
     elif choice == '3':
         break
+
+
+
+    
