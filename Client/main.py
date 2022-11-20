@@ -31,6 +31,7 @@ while True:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 r = requests.post(serverUrl, data={'method': 'get'})
                 r = r.text
+                print(r)
                 msg = input('Message: ')
                 with open('cookie.txt', 'r') as f:
                     cookie = f.read()
