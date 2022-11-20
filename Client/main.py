@@ -15,6 +15,8 @@ while True:
         username = input('Enter username: ')
         password = input('Enter password: ')
         r = requests.post(serverUrl, data={'method': 'register', 'username': username, 'password': password})
+        print(r.text)
+        sleep(2)
     elif choice == '2':
         username = input('Enter username: ')
         password = input('Enter password: ')
