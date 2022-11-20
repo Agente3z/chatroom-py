@@ -1,2 +1,6 @@
 
 .vscode/settings.json
+Server/__pycache__/cookiepy.cpython-311.pyc
+Server/__pycache__/login.cpython-311.pyc
+Server/__pycache__/main.cpython-311.pyc
+Server/__pycache__/register.cpython-311.pyc
