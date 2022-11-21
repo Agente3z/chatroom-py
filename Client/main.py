@@ -43,7 +43,7 @@ while True:
             ottieni()
 
             while True:
-                msg = input()
+                msg = input('>')
                 with open('cookie.txt', 'r') as f:
                     cookie = f.read()
                 r = requests.post(serverUrl, data={'method': 'send', 'cookie': cookie, 'msg': msg, 'username': username})
