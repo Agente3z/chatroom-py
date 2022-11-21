@@ -10,6 +10,6 @@
 
 **CLIENT:**
 - Requests
-- SocketIO
+- Python-SocketIO
 
 <p align=center><bWork in progress</b>
