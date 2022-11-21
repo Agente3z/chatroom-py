@@ -1,6 +1,6 @@
 # ChatRoom-py
 
-**Simple chat room written in python using flask as to create a server and requests
+**Simple chat room written in python using flask as to create a server and requests**
 
 ## Requirements
 - Flask
