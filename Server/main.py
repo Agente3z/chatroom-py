@@ -44,4 +44,4 @@ def on_msg():
     socketio.emit('Incoming message')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True)
