@@ -1,9 +1,11 @@
 import requests
 import os
 from time import sleep
-import threading
+import socketio
 
 serverUrl = "http://127.0.0.1:5000"
+sio = socketio.Client()
+sio.connect(serverUrl)
 
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -31,23 +33,21 @@ while True:
                 f.write(r)
             cookie = r
 
+            @sio.on('Incoming message')
             def ottieni():
-                while True:
-                    chat=requests.post(serverUrl, data={'method': 'get'}).text
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    print(chat)
-                    print('Message: ')
-                    sleep(0.5)
-
-            t = threading.Thread(target=ottieni)
-            t.daemon = True
-            t.start()
+                chat=requests.post(serverUrl, data={'method': 'get'}).text
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print(chat)
+                print('Message: ')
+            
+            ottieni()
 
             while True:
                 msg = input()
                 with open('cookie.txt', 'r') as f:
                     cookie = f.read()
                 r = requests.post(serverUrl, data={'method': 'send', 'cookie': cookie, 'msg': msg, 'username': username})
+                sio.emit('message')
 
     elif choice == '3':
         break

@@ -1,9 +1,12 @@
 from flask import Flask,request
+from flask_socketio import SocketIO
 from register import register
 from login import login
 import cookiepy
 
 app = Flask(__name__)   # create the Flask app
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 @app.post('/')
 def post():
@@ -36,6 +39,9 @@ def post():
         with open('data/messages.txt', 'r') as f:
             return f.read()
 
+@socketio.on('message')
+def on_msg():
+    socketio.emit('Incoming message')
 
 if __name__ == '__main__':
     app.run(debug=True)
