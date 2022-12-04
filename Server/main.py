@@ -11,12 +11,12 @@ socketio = SocketIO(app)
 @app.post('/')
 def post():
     if request.form['method'] == 'register':
-        username = request.form['username']
+        username = request.form['username'].strip()
         password = request.form['password']
         return register(username, password)
 
     if request.form['method'] == 'login':
-        username = request.form['username']
+        username = request.form['username'].strip()
         password = request.form['password']
         if login(username, password) == "Login successful":
             return cookiepy.generateCookie(username)
@@ -30,7 +30,7 @@ def post():
             if f.read() == cookie:
                 msg = request.form['msg']
                 with open('data/messages.txt', 'a') as f:
-                    f.write(username + ':' + msg + '\n')
+                    f.write(username + ': ' + msg + '\n')
                 return "Message sent"
             else:
                 return "Invalid cookie"
