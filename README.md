@@ -13,7 +13,9 @@
 **CLIENT:**
 - Requests
 - Python-SocketIO
+- Pillow
+- Numpy
 
-  $ python -m pip install requests python-socketio
+  $ python -m pip install requests python-socketio pillow numpy
 
 <p align=center><bWork in progress</b>
