@@ -44,6 +44,15 @@ while True:
 
             while True:
                 msg = input('>')
+                if msg[:6]=='/image':
+                    try:
+                        os.system(f'python genascii.py --file {msg[7:]} --cols 80')
+                        with open('out.txt', 'r') as f:
+                            msg = '\n'+f.read()
+                    except:
+                        print('File not found')
+                        continue
+
                 with open('cookie.txt', 'r') as f:
                     cookie = f.read()
                 r = requests.post(serverUrl, data={'method': 'send', 'cookie': cookie, 'msg': msg, 'username': username})
