@@ -18,4 +18,4 @@
 
   $ python -m pip install requests python-socketio pillow numpy
 
-<p align=center><bWork in progress</b>
+<p align=center><b>Work in progress</b></p>
